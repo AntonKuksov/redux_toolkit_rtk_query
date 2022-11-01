@@ -5,8 +5,27 @@ import { userSlice } from "./store/reducers/UserSlice";
 import { fetchUsers } from "./store/reducers/ActionCreators";
 import PostContainer from "./components/PostContainer";
 import PostContainer2 from "./components/PostContainer2";
+import axios from "axios";
 
 function App() {
+  const options = {
+    method: "GET",
+    url: "https://api.watchmode.com/v1/list-titles",
+    params: {
+      apiKey: "u98XlZ86EmcMavXDkLBxJ6bwTPQvWtgQ7wpGiISc",
+      source_ids: "203,57",
+      // limit: 10,
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
   // const dispatch = useAppDispatch();
   // const { users, isLoading, error } = useAppSelector(
   //   (state) => state.userReducer
